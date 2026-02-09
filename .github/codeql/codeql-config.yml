@@ -1,0 +1,6 @@
+name: "CodeQL config for WheelDrop Logbook"
+
+# Exclude test fixtures from security scanning — they contain
+# synthetic conversation data that would trigger false positives
+paths-ignore:
+  - 'src/test-fixtures/**'

@@ -1,0 +1,6 @@
+[
+  {"sessionId": "gemini-session-1", "messageId": 0, "type": "user", "message": "Explain error handling best practices", "timestamp": "2026-02-01T00:01:00Z"},
+  {"sessionId": "gemini-session-1", "messageId": 1, "type": "user", "message": "How should I handle authentication errors specifically?", "timestamp": "2026-02-01T00:05:00Z"},
+  {"sessionId": "gemini-session-cleared", "messageId": 0, "type": "user", "message": "Help me set up a CI pipeline with GitHub Actions", "timestamp": "2026-02-01T01:00:00Z"},
+  {"sessionId": "gemini-session-cleared", "messageId": 1, "type": "user", "message": "Add caching to the workflow for node_modules", "timestamp": "2026-02-01T01:05:00Z"}
+]

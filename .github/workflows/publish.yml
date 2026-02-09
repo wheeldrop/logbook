@@ -1,0 +1,72 @@
+name: Publish Package to npm
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions: {}
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # needed for creating GitHub releases
+      id-token: write  # needed for npm provenance and OIDC trusted publishers
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        with:
+          node-version: "lts/*"
+          registry-url: "https://registry.npmjs.org"
+          package-manager-cache: false
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+
+      - name: Run tests
+        run: npm run test:coverage
+
+      - name: Security audit
+        run: npm audit --audit-level=moderate
+
+      - name: Determine dist tag
+        id: dist-tag
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          if [[ "$VERSION" != "$TAG_VERSION" ]]; then
+            echo "::error::Git tag $GITHUB_REF_NAME does not match package.json version $VERSION"
+            exit 1
+          fi
+          if [[ "$VERSION" == *-* ]]; then
+            TAG=$(echo "$VERSION" | sed 's/.*-\([a-z]*\).*/\1/')
+            echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+            echo "prerelease=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "tag=latest" >> "$GITHUB_OUTPUT"
+            echo "prerelease=false" >> "$GITHUB_OUTPUT"
+          fi
+          echo "Publishing $VERSION with dist tag: $TAG"
+
+      - name: Publish to npm
+        run: npm publish --provenance --access public --tag "$DIST_TAG"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          DIST_TAG: ${{ steps.dist-tag.outputs.tag }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b # v2.5.0
+        with:
+          generate_release_notes: true
+          prerelease: ${{ steps.dist-tag.outputs.prerelease == 'true' }}

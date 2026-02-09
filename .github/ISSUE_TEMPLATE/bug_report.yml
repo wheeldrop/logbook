@@ -1,0 +1,92 @@
+name: Bug Report
+description: Report a bug in WheelDrop Logbook
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Please complete the sections below so the issue can be reproduced quickly.
+
+  - type: input
+    id: node-version
+    attributes:
+      label: Node.js Version
+      description: Output of `node --version`
+      placeholder: "v24.0.0"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating System
+      description: OS and version
+      placeholder: "Ubuntu 24.04 / macOS 15 / Windows 11"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: agent
+    attributes:
+      label: AI Coding Agent
+      description: Which agent's data is involved?
+      options:
+        - Claude Code
+        - Codex CLI
+        - Gemini CLI
+        - Multiple agents
+        - Not agent-specific
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tool
+    attributes:
+      label: MCP Tool
+      description: Which logbook tool triggered the issue?
+      options:
+        - logbook_search
+        - logbook_sessions
+        - logbook_read
+        - logbook_memory
+        - logbook_plans
+        - Installation / setup
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Minimal steps to reproduce the issue.
+      placeholder: |
+        1. Configure MCP server with ...
+        2. Search for ...
+        3. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What did you expect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What happened instead? Include error messages or logs.
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other relevant details (MCP client, configuration, etc.).
+    validations:
+      required: false

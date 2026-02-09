@@ -1,0 +1,6 @@
+{"type":"system","subtype":"turn_duration","timestamp":"2026-02-01T00:00:00Z"}
+{"type":"human","message":{"role":"user","content":"Help me with authentication"},"timestamp":"2026-02-01T00:01:00Z","cwd":"/home/testuser/test-project"}
+{"type":"assistant","message":{"role":"assistant","content":[{"type":"text","text":"I'll help you implement authentication using JWT tokens. First, let's install the dependencies."}]},"timestamp":"2026-02-01T00:02:00Z"}
+{"type":"human","message":{"role":"user","content":"Can you also add refresh token support?"},"timestamp":"2026-02-01T00:05:00Z","cwd":"/home/testuser/test-project"}
+{"type":"assistant","message":{"role":"assistant","content":[{"type":"text","text":"Sure! I'll add refresh token rotation with secure httpOnly cookies."}]},"timestamp":"2026-02-01T00:06:00Z"}
+{"type":"summary","summary":"Implemented JWT authentication with refresh token support","sessionId":"test-session-1"}

@@ -1,0 +1,14 @@
+{
+  "sessionId": "gemini-session-1",
+  "projectHash": "abc123",
+  "startTime": "2026-02-01T00:00:00Z",
+  "lastUpdated": "2026-02-01T00:10:00Z",
+  "messages": [
+    {"id": "msg-1", "timestamp": "2026-02-01T00:01:00Z", "type": "user", "content": "Explain error handling best practices"},
+    {"id": "msg-2", "timestamp": "2026-02-01T00:02:00Z", "type": "gemini", "content": "Here are the key error handling patterns for robust applications: 1) Use typed errors, 2) Handle at boundaries, 3) Never swallow exceptions silently.", "model": "gemini-2.5-pro"},
+    {"id": "msg-3", "timestamp": "2026-02-01T00:05:00Z", "type": "user", "content": "How should I handle authentication errors specifically?"},
+    {"id": "msg-4", "timestamp": "2026-02-01T00:06:00Z", "type": "gemini", "content": "For authentication errors, return 401 for invalid credentials and 403 for insufficient permissions. Use middleware to centralize the logic.", "model": "gemini-2.5-pro"}
+  ],
+  "summary": "Discussion about error handling patterns",
+  "directories": ["/home/testuser/test-project"]
+}
