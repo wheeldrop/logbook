@@ -1,0 +1,17 @@
+{
+  "name": "logbook",
+  "description": "WheelDrop Logbook — give your AI coding agents a shared, persistent memory",
+  "version": "0.1.0",
+  "author": {
+    "name": "Crash United, LLC",
+    "email": "info@crashunited.com"
+  },
+  "license": "Apache-2.0",
+  "keywords": ["mcp", "wheeldrop", "logbook", "conversation-search", "ai-coding-agent"],
+  "mcpServers": {
+    "logbook": {
+      "command": "npx",
+      "args": ["@wheeldrop/logbook"]
+    }
+  }
+}

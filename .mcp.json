@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "logbook": {
+      "command": "npx",
+      "args": ["@wheeldrop/logbook"]
+    }
+  }
+}

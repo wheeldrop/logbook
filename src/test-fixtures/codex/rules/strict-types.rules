@@ -1,0 +1,1 @@
+Always use strict TypeScript types. No `any`.

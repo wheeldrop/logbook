@@ -1,0 +1,6 @@
+{"timestamp":"2026-02-01T00:00:00Z","type":"session_meta","payload":{"type":"session","cwd":"/home/testuser/test-project","git":{"branch":"feature/db","commit_hash":"abc123"},"cli_version":"1.0","model_provider":"openai","model":"o3"}}
+{"timestamp":"2026-02-01T00:01:00Z","type":"event_msg","payload":{"type":"user_message","message":"Set up database migration with PostgreSQL"}}
+{"timestamp":"2026-02-01T00:02:00Z","type":"response_item","payload":{"type":"message","role":"assistant","content":[{"type":"output_text","text":"I'll create the migration files for PostgreSQL. Let me set up the schema first."}]}}
+{"timestamp":"2026-02-01T00:05:00Z","type":"event_msg","payload":{"type":"user_message","message":"Add a users table with email and password columns"}}
+{"timestamp":"2026-02-01T00:06:00Z","type":"response_item","payload":{"type":"message","role":"assistant","content":[{"type":"output_text","text":"I'll create the users table migration with proper indexing on email."}]}}
+{"timestamp":"2026-02-01T00:07:00Z","type":"event_msg","payload":{"type":"agent_message","message":"Migration files created successfully. The users table includes email (unique, indexed) and password_hash columns."}}

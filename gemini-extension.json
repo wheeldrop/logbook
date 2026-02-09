@@ -1,0 +1,12 @@
+{
+  "name": "logbook-search",
+  "version": "0.1.0",
+  "description": "WheelDrop Logbook — give your AI coding agents a shared, persistent memory",
+  "mcpServers": {
+    "logbook": {
+      "command": "npx",
+      "args": ["@wheeldrop/logbook"]
+    }
+  },
+  "contextFileName": "agents/AGENTS.md"
+}
