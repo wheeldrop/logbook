@@ -1,6 +1,6 @@
 {
-  "name": "logbook-search",
-  "version": "0.1.0",
+  "name": "logbook",
+  "version": "0.2.0",
   "description": "WheelDrop Logbook — give your AI coding agents a shared, persistent memory",
   "mcpServers": {
     "logbook": {

@@ -27,7 +27,7 @@ npm test             # Run tests
 - `src/server.ts` — MCP tool and resource registration
 - `src/index.ts` — Entry point (stdio transport)
 - `agents/AGENTS.md` — Shared context for Gemini CLI + Codex users
-- `skills/logbook-search/SKILL.md` — Agent skill (shared across Claude + Codex)
+- `skills/logbook/SKILL.md` — Agent skill (shared across Claude + Codex)
 - `.claude-plugin/` — Claude Code plugin manifests
 - `gemini-extension.json` — Gemini CLI extension manifest
 - `server.json` — MCP Registry manifest

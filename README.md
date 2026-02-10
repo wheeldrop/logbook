@@ -16,18 +16,19 @@ Auto-detect installed agents and configure them all:
 npx @wheeldrop/logbook --install
 ```
 
-This detects which agents you have (Claude Code, Codex CLI, Gemini CLI), configures each one to use Logbook as an MCP server, and installs agent-specific skills where supported. The installer also copies a skill file to `~/.codex/skills/logbook-search/` so Codex auto-triggers conversation search when relevant.
+This detects which agents you have (Claude Code, Codex CLI, Gemini CLI), configures each one to use Logbook as an MCP server, and installs agent-specific skills where supported. The installer also copies a skill file to `~/.codex/skills/logbook/` so Codex auto-triggers conversation search when relevant.
 
 ## Per-Agent Setup
 
 ### Claude Code
 
-**Plugin install** (if available):
+**Plugin install**:
 ```bash
-claude plugin add @wheeldrop/logbook
+claude plugin marketplace add wheeldrop/logbook
+claude plugin install logbook@logbook
 ```
 
-**MCP server** (manual):
+**MCP server only** (no skill/context):
 ```bash
 claude mcp add logbook --scope user -e -- npx @wheeldrop/logbook
 ```
@@ -50,8 +51,8 @@ args = ["@wheeldrop/logbook"]
 
 Optionally, copy the bundled skill for auto-triggered search:
 ```bash
-mkdir -p ~/.codex/skills/logbook-search
-cp $(npm root -g)/@wheeldrop/logbook/skills/logbook-search/SKILL.md ~/.codex/skills/logbook-search/
+mkdir -p ~/.codex/skills/logbook
+cp $(npm root -g)/@wheeldrop/logbook/skills/logbook/SKILL.md ~/.codex/skills/logbook/
 ```
 
 ### Any MCP-Compatible Client
@@ -71,9 +72,9 @@ The server uses stdio transport — no network, no API keys, purely local.
 
 ### Agent Skills (Optional)
 
-Logbook ships a skill file (`skills/logbook-search/SKILL.md`) that teaches agents how to search effectively — query formulation, result triage, the search→sessions→read drill-in workflow. Copy it into any agent that supports skills:
+Logbook ships a skill file (`skills/logbook/SKILL.md`) that teaches agents how to search effectively — query formulation, result triage, the search→sessions→read drill-in workflow. Copy it into any agent that supports skills:
 
-- **Codex CLI**: `~/.codex/skills/logbook-search/SKILL.md`
+- **Codex CLI**: `~/.codex/skills/logbook/SKILL.md`
 - **Claude Code**: Install as a plugin (bundles the skill automatically)
 - **Gemini CLI**: Install as an extension (bundles the skill automatically)
 

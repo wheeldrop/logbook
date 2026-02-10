@@ -1,6 +1,5 @@
 import { existsSync, readFileSync, writeFileSync, mkdirSync, copyFileSync } from "fs";
 import { join, dirname } from "path";
-import { homedir } from "os";
 import { execSync } from "child_process";
 import { AGENT_PATHS } from "./utils/paths.js";
 
@@ -34,41 +33,28 @@ function configureClaude(): boolean {
     return false;
   }
 
-  // Try the CLI first
-  if (commandExists("claude")) {
-    try {
-      execSync('claude mcp add logbook --scope user -e -- npx @wheeldrop/logbook', {
-        stdio: "ignore",
-      });
-      ok("Added Logbook MCP server to Claude Code (user scope)");
-      return true;
-    } catch {
-      // Fall through to JSON config
-    }
+  if (!commandExists("claude")) {
+    warn("Claude Code CLI not found in PATH — skipping");
+    info("Install manually: claude plugin marketplace add wheeldrop/logbook");
+    info("                  claude plugin install logbook@logbook");
+    return false;
   }
 
-  // Fallback: write ~/.claude.json directly
-  const claudeJson = join(homedir(), ".claude.json");
-  const entry = { command: "npx", args: ["@wheeldrop/logbook"] };
+  try {
+    // Add marketplace and install plugin (bundles MCP server + skill)
+    execSync("claude plugin marketplace add wheeldrop/logbook", { stdio: "ignore" });
+    ok("Added wheeldrop/logbook marketplace");
+  } catch {
+    // Marketplace may already exist — continue to install
+  }
 
   try {
-    const cfg = JSON.parse(readFileSync(claudeJson, "utf8"));
-    if (cfg.mcpServers?.logbook) {
-      ok("Claude Code already configured");
-      return true;
-    }
-    if (!cfg.mcpServers) cfg.mcpServers = {};
-    cfg.mcpServers.logbook = entry;
-    writeFileSync(claudeJson, JSON.stringify(cfg, null, 2) + "\n");
-    ok(`Added Logbook to ${claudeJson}`);
+    execSync("claude plugin install logbook@logbook --scope user", { stdio: "ignore" });
+    ok("Installed Logbook plugin for Claude Code (user scope)");
     return true;
   } catch (e) {
-    if ((e as NodeJS.ErrnoException).code === "ENOENT") {
-      writeFileSync(claudeJson, JSON.stringify({ mcpServers: { logbook: entry } }, null, 2) + "\n");
-      ok(`Created ${claudeJson} with Logbook`);
-      return true;
-    }
-    err(`Failed to update ${claudeJson}: ${e}`);
+    warn(`Plugin install failed: ${e}`);
+    info("Install manually: claude plugin install logbook@logbook");
     return false;
   }
 }
@@ -105,12 +91,12 @@ function configureCodex(): boolean {
   }
 
   // Install skill file
-  const skillDir = join(AGENT_PATHS.codex, "skills", "logbook-search");
-  const skillSource = join(dirname(dirname(import.meta.dirname!)), "skills", "logbook-search", "SKILL.md");
+  const skillDir = join(AGENT_PATHS.codex, "skills", "logbook");
+  const skillSource = join(dirname(dirname(import.meta.dirname!)), "skills", "logbook", "SKILL.md");
   if (existsSync(skillSource)) {
     mkdirSync(skillDir, { recursive: true });
     copyFileSync(skillSource, join(skillDir, "SKILL.md"));
-    ok(`Installed logbook-search skill to ${skillDir}`);
+    ok(`Installed logbook skill to ${skillDir}`);
   }
 
   return true;

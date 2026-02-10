@@ -1,5 +1,5 @@
 ---
-name: logbook-search
+name: logbook
 description: >
   Search past conversations across AI coding agents. Use when the user asks to
   "search conversations", "find past discussion", "what did we discuss",

@@ -1,7 +1,7 @@
 {
-  "name": "wheeldrop-logbook",
+  "name": "logbook",
   "metadata": {
-    "version": "1.0.0",
+    "version": "0.2.0",
     "description": "Search conversation logs across all AI coding agents."
   },
   "owner": {

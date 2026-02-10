@@ -1,5 +1,5 @@
 ---
-name: logbook-search
+name: logbook
 description: WheelDrop Logbook — search conversations across all AI coding agents
 ---
 
@@ -28,13 +28,13 @@ Reach for these tools when:
 **`logbook_sessions`** lists recent sessions by recency — use when you don't have search terms.
 
 <skills>
-You have a SKILL documented in: "skills/logbook-search/SKILL.md"
+You have a SKILL documented in: "skills/logbook/SKILL.md"
 
 IMPORTANT: Read the SKILL.md file for detailed search strategies, query formulation
 tips, and recipes for common situations.
 
 <available_skills>
-logbook-search: Search past conversations across AI coding agents. Use when the user
+logbook: Search past conversations across AI coding agents. Use when the user
 asks to "search conversations", "find past discussion", "what did we discuss",
 "previous session", "what was said about", "look up conversation", "logbook", or
 wants to recall something from a prior coding session with any agent.

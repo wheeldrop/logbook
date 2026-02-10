@@ -1,6 +1,6 @@
 {
   "name": "@wheeldrop/logbook",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "The flight recorder for your AI agents — search conversation logs across Claude Code, Codex, and Gemini CLI",
   "type": "module",
   "bin": {

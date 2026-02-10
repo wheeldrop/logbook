@@ -121,12 +121,12 @@ if [ -d "$CODEX_DIR" ]; then
   fi
 
   # Install skill
-  CODEX_SKILL_DIR="$CODEX_DIR/skills/logbook-search"
-  SKILL_SOURCE=$(npm root -g)/$PACKAGE/skills/logbook-search/SKILL.md
+  CODEX_SKILL_DIR="$CODEX_DIR/skills/logbook"
+  SKILL_SOURCE=$(npm root -g)/$PACKAGE/skills/logbook/SKILL.md
   if [ -f "$SKILL_SOURCE" ]; then
     mkdir -p "$CODEX_SKILL_DIR"
     cp "$SKILL_SOURCE" "$CODEX_SKILL_DIR/SKILL.md"
-    ok "Installed logbook-search skill to $CODEX_SKILL_DIR"
+    ok "Installed logbook skill to $CODEX_SKILL_DIR"
   else
     warn "Codex skill file not found in package — MCP server configured, skill skipped"
   fi

@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-02-09
+
+### Changed
+
+- **Claude Code installer uses native plugin system** — `--install` now runs `claude plugin marketplace add` + `claude plugin install` instead of `claude mcp add`, bundling the skill and context alongside the MCP server
+- **Consistent naming** — all extensions, skills, and manifests unified under `logbook` (was `logbook-search` in some places)
+
 ## [0.1.1] — 2026-02-09
 
 ### Fixed
